@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Spots</h1>
+
+<form class="row" method="get">
+    <input type="text" name="q" placeholder="Search (name/city)" value="{{ q }}">
+    <select name="category">
+        <option value="">All categories</option>
+        {% for c in categories %}
+        <option value="{{ c }}" {% if category==c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+    </select>
+    <button class="btn" type="submit">Filter</button>
+</form>
+
+{% if spots %}
+<ul class="list">
+    {% for s in spots %}
+    <li class="list-item">
+        <div>
+            <a href="{{ url_for('spot_detail', spot_id=s.id) }}">{{ s.name }}</a>
+            <div class="muted">{{ s.city_full_name or s.city_query }} • {{ s.category }}{% if s.price_level %} • €{{
+                s.price_level }}{% endif %}
+            </div>
+        </div>
+        <div class="muted">{{ s.created_at.strftime("%Y-%m-%d %H:%M") }}</div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Нема записи.</p>
+{% endif %}
+{% endblock %}

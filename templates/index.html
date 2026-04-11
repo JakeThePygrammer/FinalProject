@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>City Bite Finder</h1>
+<p>Зачувај локали по град. Апликацијата автоматски го наоѓа целосното име на градот (OpenStreetMap) и има AI
+    копчиња за генерирање на опис и тагови.</p>
+<p><a class="btn" href="{{ url_for('spots_new') }}">Додај ново место</a></p>
+{% endblock %}

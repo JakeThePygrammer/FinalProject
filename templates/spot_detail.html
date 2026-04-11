@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ spot.name }}</h1>
+
+<div class="muted">
+  {{ spot.city_full_name or spot.city_query }}
+  • {{ spot.category }}
+  {% if spot.price_level %} • €{{ spot.price_level }}{% endif %}
+</div>
+
+{% if spot.notes %}
+<h2>Notes</h2>
+<div class="card">
+  <pre class="pre">{{ spot.notes }}</pre>
+</div>
+{% endif %}
+
+<div class="row">
+  <a class="btn" href="{{ url_for('spot_edit', spot_id=spot.id) }}">Edit</a>
+
+  <form method="post"
+        action="{{ url_for('spot_delete', spot_id=spot.id) }}"
+        onsubmit="return confirm('Delete?');">
+    <button class="btn danger" type="submit">Delete</button>
+  </form>
+</div>
+
+<h2>AI</h2>
+
+<div class="row">
+  <form method="post" action="{{ url_for('ai_rewrite', spot_id=spot.id) }}">
+    <button class="btn" type="submit">Rewrite description</button>
+  </form>
+
+  <form method="post" action="{{ url_for('ai_tags', spot_id=spot.id) }}">
+    <button class="btn" type="submit">Suggest tags</button>
+  </form>
+</div>
+
+<h3>AI description</h3>
+<div class="card">
+  <pre class="pre">{{ spot.ai_description or "—" }}</pre>
+</div>
+
+<h3>Tags</h3>
+<div class="card">
+  <pre class="pre">{{ spot.tags or "—" }}</pre>
+</div>
+
+{% endblock %}

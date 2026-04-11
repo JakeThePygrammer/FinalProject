@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{% if spot %}Edit Spot{% else %}New Spot{% endif %}</h1>
+
+<form class="form" method="post">
+    <label>Име *</label>
+    <input type="text" name="name" maxlength="120" required value="{{ spot.name if spot else '' }}">
+
+    <label>Град *</label>
+    <input type="text" name="city_query" maxlength="120" required value="{{ spot.city_query if spot else '' }}">
+
+    <label>Категорија *</label>
+    <select name="category" required>
+        <option value="" disabled {% if not spot %}selected{% endif %}>Select…</option>
+        {% for c in categories %}
+        <option value="{{ c }}" {% if spot and spot.category==c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Price level (1-3)</label>
+    <input type="number" name="price_level" min="1" max="3"
+           value="{{ spot.price_level if spot and spot.price_level else '' }}">
+
+    <label>Notes</label>
+    <textarea name="notes" rows="6">{{ spot.notes if spot and spot.notes else '' }}</textarea>
+
+    <button class="btn" type="submit">Save</button>
+</form>
+{% endblock %}
