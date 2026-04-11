@@ -1,21 +1,49 @@
-from datetime import datetime
-
-from sqlalchemy import Column, String, Integer, Text, DateTime
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, String, Integer, ForeignKey, create_engine
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 Base = declarative_base()
 
-# моделот/табелата којашто ја чуваме во база
-class Spot(Base):
-    __tablename__ = "spots"
-
+class User(Base):
+    __tablename__ = "user"
     id = Column(Integer, primary_key=True)
-    name = Column(String(120), nullable=False)
-    city_query = Column(String(120), nullable=False)
-    city_full_name = Column(String(255), nullable=True)
-    category = Column(String(40), nullable=False)
-    price_level = Column(Integer, nullable=True)
-    notes = Column(Text, nullable=True)
-    ai_description = Column(Text, nullable=True)
-    tags = Column(String(255), nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    username = Column(String)
+    password = Column(String)
+    email = Column(String)
+    polls = relationship("Poll", back_populates="creator")
+    votes_cast = relationship("Vote", back_populates="voter")
+
+class Poll(Base):
+    __tablename__ = "poll"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    description = Column(String)
+    category = Column(String)
+    location = Column(String)
+    privacy = Column(Integer, default=0)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    creator = relationship("User", back_populates="polls")
+    options = relationship("Option", back_populates="poll")
+    votes = relationship("Vote", back_populates="poll")
+
+class Option(Base):
+    __tablename__ = "option"
+    id = Column(Integer, primary_key=True)
+    optionname = Column(String)
+    votes_total = Column(Integer, default=0)
+    poll_id = Column(Integer, ForeignKey("poll.id"))
+    poll = relationship("Poll", back_populates="options")
+    votes = relationship("Vote", back_populates="option")
+
+class Vote(Base):
+    __tablename__ = "vote"
+    id = Column(Integer, primary_key=True)
+    poll_id = Column(Integer, ForeignKey("poll.id"))
+    option_id = Column(Integer, ForeignKey("option.id"))
+    user_id = Column(Integer, ForeignKey("user.id"))
+    poll = relationship("Poll", back_populates="votes")
+    option = relationship("Option", back_populates="votes")
+    voter = relationship("User", back_populates="votes_cast")
+
+engine = create_engine("sqlite:///polls.db")
+Base.metadata.create_all(engine)
+SessionLocal = sessionmaker(bind=engine)

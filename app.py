@@ -8,7 +8,7 @@ from services.city_api import get_city_display_name
 
 app = Flask(__name__)
 
-CATEGORIES = ["cafe", "restaurant", "fast_food", "dessert"]  # категории на типови на локали
+CATEGORIES = ["politics", "restaurant", "fast_food", "dessert"]  # категории на типови на локали
 
 
 @app.get("/")
