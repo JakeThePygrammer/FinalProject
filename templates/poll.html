@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poll</title>
+</head>
+<body>
+<h1>{{ poll.name }}</h1>
+<p>{{ poll.description }}</p>
+
+<h3>Choices:</h3>
+<ul>
+    {% for opt in poll.options %}
+        <li>{{ opt.optionname }} — {{ opt.votes_total }} votes</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

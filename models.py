@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, create_engine
+from datetime import datetime
+from sqlalchemy import Column, String, Integer, ForeignKey, create_engine, DateTime, UniqueConstraint
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 Base = declarative_base()
@@ -16,6 +17,7 @@ class Poll(Base):
     __tablename__ = "poll"
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     description = Column(String)
     category = Column(String)
     location = Column(String)
