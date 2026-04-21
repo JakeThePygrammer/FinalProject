@@ -33,32 +33,7 @@ def poll(id = id):
     poll = poll_data)
 
 
-@app.route("/pollvote/<int:id>", methods=["GET", "POST"])
-def voting(id):
-    # Create a fresh session for THIS request
-    db_session = SessionLocal()
-    poll_data = db_session.get(Poll, id)
 
-    if request.method == "POST":
-        selected_option_id = request.form.get("voting")
-        if selected_option_id:
-            option = db_session.get(Option, int(selected_option_id))
-            if option:
-                # 1. Increment vote
-                option.votes_total = (option.votes_total or 0) + 1
-
-                # 2. Add vote record
-                new_vote = Vote(poll_id=id, option_id=option.id, user_id=1)
-                db_session.add(new_vote)
-
-                # 3. Commit the changes
-                db_session.commit()
-                db_session.close()  # Close after work is done
-
-                return redirect(url_for("poll", id=id))
-
-    db_session.close()
-    return render_template("pollvote.html", poll=poll_data)
 
 # @app.route("/spots/new", methods=["GET", "POST"])
 # def spots_new():
