@@ -8,6 +8,14 @@
 </head>
 <body>
 <nav class="nav">
+    <a href="{{ url_for('polls') }}">Home</a>
+    {% if session.get('user_id') %}
+        <span>Welcome, {{ session['username'] }}</span>
+        <a href="{{ url_for('users_logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('users_login') }}">Login</a>
+        <a href="{{ url_for('users_new') }}">Sign Up</a>
+    {% endif %}
 </nav>
 
 <main class="container">
