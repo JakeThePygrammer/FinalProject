@@ -2,12 +2,13 @@
 {% block content %}
 <h1>{{ poll.name }}</h1>
 <p>{{ poll.description }}</p>
-
+<p>{{ poll.created_at.strftime('%Y-%m-%d %H:%M')}}</p>
 <h3>Choices:</h3>
     <form method="post">
         {% for opt in poll.options %}
         <input type="radio" id="{{ opt.id }}" name="voting" value="{{ opt.id }}">
         <label for={{opt.id}}>{{opt.optionname}}</label>
+            <label>-</label>
         <label for={{opt.id}}>{{opt.votes_total}}</label>
         <br>
         {% endfor %}

@@ -11,16 +11,12 @@ app = Flask(__name__)
 app.secret_key = 'Helloiamjakovandiamstudyinginsemostodayis352026at4am'
 
 @app.get("/")
-def home():
-    return render_template("index.html")
-
-@app.get("/polls")
 def polls():
-    query = session.query(Poll).join(Option)
+    query = session.query(Poll)
     polls = query.order_by(Poll.created_at.desc()).all()
     return render_template(
         "polls.html",
-        polls=polls,)
+        polls=polls)
 
 
 @app.route("/polls/<int:id>", methods=["GET", "POST"])
