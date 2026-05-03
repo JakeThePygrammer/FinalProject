@@ -1,23 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}
-<form method="POST">
+    <h1>User settings</h1>
+<form method="POST" class="usersets">
     <label>Description</label>
-    <textarea name="description"></textarea>
+    <br>
+    <textarea name="description" cols="100" rows="5"></textarea>
+    <br>
     <button type="submit">Change description</button>
 </form>
-<form method="POST">
+    <br>
+<form method="POST" class="usersets">
     <label>Username</label>
+        <br>
     <input type="text" name="username" required>
+        <br>
     <button type="submit">Change username</button>
 </form>
-<form method="POST">
+        <br>
+<form method="POST" class="usersets">
     <label>Email</label>
+        <br>
     <input type="email" name="email" required>
+        <br>
     <button type="submit">Change email</button>
 </form>
-<form method="POST">
+<form method="POST" class="usersets">
+    <br>
     <label>Password</label>
+        <br>
     <input type="password" name="password" required>
+        <br>
     <button type="submit">Change password</button>
 </form>
+        <br>
 {% endblock %}

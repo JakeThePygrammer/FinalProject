@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>Choose size : </h1>
-    <a href="{{ url_for('polls_new') }}">2 options</a>
-    <a href="{{ url_for('polls_new3') }}">3 options</a>
-    <a href="{{ url_for('polls_new4') }}">4 options</a>
-    <a href="{{ url_for('polls_new5') }}">5 options</a>
-    <a href="{{ url_for('polls_new6') }}">6 options</a>
+    <div id="holder">
+        <a class="pollcreate" href="{{ url_for('polls_new') }}">2 options</a>
+        <a class="pollcreate" href="{{ url_for('polls_new3') }}">3 options</a>
+        <a class="pollcreate" href="{{ url_for('polls_new4') }}">4 options</a>
+        <a class="pollcreate" href="{{ url_for('polls_new5') }}">5 options</a>
+        <a class="pollcreate" href="{{ url_for('polls_new6') }}">6 options</a>
+    </div>
 {% endblock %}

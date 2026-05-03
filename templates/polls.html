@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Vote today</h1>
+    <h1>Vote today!</h1>
     {% for poll in polls %}
+        <article>
             <h3>{{ poll.name }} - {{ poll.created_at.strftime('%Y-%m-%d %H:%M')}}</h3>
             <p>{{ poll.description }}</p>
             <a href="{{ url_for('poll', id=poll.id) }}">
                 <button type="button">Vote Now</button>
             </a>
+        </article>
     {% endfor %}
 {% endblock %}

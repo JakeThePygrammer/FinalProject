@@ -470,3 +470,5 @@ def pollssearchexact():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+#TO FINISH - login, signup and the polls 3-6
