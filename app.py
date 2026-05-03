@@ -13,8 +13,8 @@ app.secret_key = 'Helloiamjakovandiamstudyinginsemostodayis352026at4am'
 @app.get("/")
 def polls():
     query = session.query(Poll)
-    polls = query.order_by(Poll.created_at.desc()).where(Poll.privacy != 1).all()
-    return render_template("polls.html", polls=polls)
+    all_polls = query.order_by(Poll.created_at.desc()).where(Poll.privacy != 1).all()
+    return render_template("polls.html", polls=all_polls)
 
 
 @app.route("/polls/<int:id>", methods=["GET", "POST"])
@@ -90,7 +90,11 @@ def polls_new():
         session.add(option2)
         session.commit()
 
-        flash("Poll created!")
+        if poll1.privacy == 1:
+            private_link = url_for('poll', id=poll1.id, _external=True)
+            flash(f"Poll created privately! Share this link with others: {private_link}")
+        else:
+            flash("Poll created successfully!")
         return redirect(url_for("polls"))
 
     return render_template("pollcreate.html")
@@ -179,7 +183,7 @@ def polls_new3():
         privacy = request.form.get("privacy")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
-        option3name = request.form.get("option2name")
+        option3name = request.form.get("option3name")
 
         if not name or not description or not category or not privacy:
             flash("Please fill all the fields.")
@@ -203,7 +207,11 @@ def polls_new3():
         session.add(option3)
         session.commit()
 
-        flash("Poll created!")
+        if poll1.privacy == 1:
+            private_link = url_for('poll', id=poll1.id, _external=True)
+            flash(f"Poll created privately! Share this link with others: {private_link}")
+        else:
+            flash("Poll created successfully!")
         return redirect(url_for("polls"))
 
     return render_template("pollcreate3.html")
@@ -249,7 +257,11 @@ def polls_new4():
         session.add(option4)
         session.commit()
 
-        flash("Poll created!")
+        if poll1.privacy == 1:
+            private_link = url_for('poll', id=poll1.id, _external=True)
+            flash(f"Poll created privately! Share this link with others: {private_link}")
+        else:
+            flash("Poll created successfully!")
         return redirect(url_for("polls"))
 
     return render_template("pollcreate4.html")
@@ -298,7 +310,11 @@ def polls_new5():
         session.add(option5)
         session.commit()
 
-        flash("Poll created!")
+        if poll1.privacy == 1:
+            private_link = url_for('poll', id=poll1.id, _external=True)
+            flash(f"Poll created privately! Share this link with others: {private_link}")
+        else:
+            flash("Poll created successfully!")
         return redirect(url_for("polls"))
 
     return render_template("pollcreate5.html")
@@ -350,7 +366,11 @@ def polls_new6():
         session.add(option6)
         session.commit()
 
-        flash("Poll created!")
+        if poll1.privacy == 1:
+            private_link = url_for('poll', id=poll1.id, _external=True)
+            flash(f"Poll created privately! Share this link with others: {private_link}")
+        else:
+            flash("Poll created successfully!")
         return redirect(url_for("polls"))
 
     return render_template("pollcreate6.html")
@@ -398,6 +418,55 @@ def users_settings():
         return redirect(url_for("polls"))
 
     return render_template("usersettings.html", user=user)
+
+@app.route("/users/<int:user_id>", methods=["GET", "POST"])
+def userview(user_id):
+    polls = session.query(Poll).filter(Poll.user_id == user_id, Poll.privacy != 1).order_by(Poll.created_at.desc()).all()
+    user = session.get(User, user_id)
+    if not user:
+        return "User not found", 404
+    return render_template("user.html", user=user, polls=polls)
+
+@app.route("/polls/<int:id>/ai", methods=["GET", "POST"])
+def pollai(id):
+    poll_data = session.get(Poll, id)
+    if not poll_data:
+        return "Poll not found", 404
+
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    prompt = (
+        "Give me a detailed statistical analysis in 2 paragraphs on the data of this poll. Use only plain text, with no text effects(bold, italic, etc...). Give reasons as to why these polls might be giving these outcomes, and a future prediction in a third paragraph."
+        f"Poll question: {poll_data.name}\n"  
+        f"Category: {poll_data.category}\n"
+        f"Options: {[(opt.optionname, opt.votes_total) for opt in poll_data.options]}\n"
+        f"Description: {poll_data.description}"
+    )
+
+    result = generate_text(prompt)
+
+    return render_template("pollai.html", poll=poll_data, result=result)
+
+
+@app.route("/pollssearchcat", methods=["GET", "POST"])
+def pollssearchcat():
+    if request.method == "POST":
+        selected_category = request.form.get("category")
+        results = session.query(Poll).filter(Poll.category == selected_category, Poll.privacy != 1).all()
+        return render_template("catsort.html", polls=results, category=selected_category)
+    return render_template("catsort.html", polls=[])
+
+
+@app.route("/pollssearchexact", methods=["GET", "POST"])
+def pollssearchexact():
+    if request.method == "POST":
+        search_query = request.form.get("poll_name")
+        results = session.query(Poll).filter(Poll.name.contains(search_query), Poll.privacy != 1).all()
+        return render_template("exactsort.html", polls=results, query=search_query)
+    return render_template("exactsort.html", polls=[])
 
 if __name__ == "__main__":
     app.run(debug=True)

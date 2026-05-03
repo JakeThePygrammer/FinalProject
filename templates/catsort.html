@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST">
+    <label>Category</label>
+    <input type="radio" name="category" value="Entertainment & Media"> Entertainment & Media
+    <input type="radio" name="category" value="Lifestyle & Food"> Lifestyle & Food
+    <input type="radio" name="category" value="Professional & Tech"> Professional & Tech
+    <input type="radio" name="category" value="Social & Opinion"> Social & Opinion
+    <input type="radio" name="category" value="Random & Just for Fun"> Random & Just for Fun
+
+    <button type="submit">Search</button>
+</form>
+
+
+<h1>Filter Polls by Category</h1>
+{% if category %}
+    <h2>Results for category: {{ category }}</h2>
+
+    {% if polls %}
+        <ul>
+            {% for poll in polls %}
+            <li>
+                <h3>{{ poll.name }}</h3>
+                <p>Created by: {{ poll.creator.username }}</p>
+                <a href="{{ url_for('poll', id=poll.id) }}">View this poll</a>
+                <br><br>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls found in this category yet.</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

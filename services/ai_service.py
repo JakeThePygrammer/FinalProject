@@ -1,23 +1,24 @@
+import os
 from google import genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 MODEL_NAME = "gemini-3-flash-preview"
 
-GEMINI_API_KEY = " " # овој АПИ клуч го добиваме од гемини
-
 def generate_text(prompt: str) -> str:
-    # ова е функцијата којашто ќе ја користиме за да добиеме notes и description со помош на AI
-    api_key = GEMINI_API_KEY
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
 
     if not api_key:
-        return "GEMINI_API_KEY недостасува или е погрешен"
+        return "GEMINI_API_KEY is missing from the .env file"
 
-    client = genai.Client(api_key=api_key) # креираме гемини клиент којшто ни овозможува комуникација со нивното АПИ
+    client = genai.Client(api_key=api_key) 
 
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=prompt,
-        )  # генерираме контент, имаме два клучни аргументи - име на моделот, промпт
-        return (response.text or "").strip() or "Нема резултат од AI (празен текст)."
+        )
+        return (response.text or "").strip() or "No ai result."
     except Exception as e:
-        return f"AI грешка: {e}"
+        return f"AI error: {e}"

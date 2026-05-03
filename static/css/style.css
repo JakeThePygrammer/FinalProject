@@ -1,0 +1,23 @@
+body{
+    background-color: black;
+    color: white;
+}
+nav > a{
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    font :40px bold Roboto, sans-serif;
+    color:black;
+    background: rgba(255, 255, 255, 0.9);
+    border: rgba(255, 255, 255, 0.1) solid 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.1);
+    margin: 30px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
