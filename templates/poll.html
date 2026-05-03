@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Poll</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 <h1>{{ poll.name }}</h1>
 <p>{{ poll.description }}</p>
 
 <h3>Choices:</h3>
-<ul>
-    {% for opt in poll.options %}
-        <li>{{ opt.optionname }} — {{ opt.votes_total }} votes</li>
-    {% endfor %}
-</ul>
-</body>
-</html>
+    <form method="post">
+        {% for opt in poll.options %}
+        <input type="radio" id="{{ opt.id }}" name="voting" value="{{ opt.id }}">
+        <label for={{opt.id}}>{{opt.optionname}}</label>
+        <label for={{opt.id}}>{{opt.votes_total}}</label>
+        <br>
+        {% endfor %}
+        <button type="submit">Vote</button>
+    </form>
+{% endblock %}

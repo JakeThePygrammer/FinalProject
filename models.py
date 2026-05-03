@@ -9,6 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String)
     password = Column(String)
+    description = Column(String)
     email = Column(String)
     polls = relationship("Poll", back_populates="creator")
     votes_cast = relationship("Vote", back_populates="voter")
@@ -16,11 +17,10 @@ class User(Base):
 class Poll(Base):
     __tablename__ = "poll"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     description = Column(String)
     category = Column(String)
-    location = Column(String)
     privacy = Column(Integer, default=0)
     user_id = Column(Integer, ForeignKey("user.id"))
     creator = relationship("User", back_populates="polls")
