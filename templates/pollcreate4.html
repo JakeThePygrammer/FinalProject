@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST">
+    <label>Poll Name</label>
+    <input type="text" name="name" required>
+
+    <label>Description</label>
+    <textarea name="description"></textarea>
+
+    <label>Category</label>
+    <input type="radio" name="category" value="Food"> Food
+    <input type="radio" name="category" value="Travel"> Travel
+
+    <label>Privacy</label>
+    <input type="radio" name="privacy" value="0"> Public
+    <input type="radio" name="privacy" value="1"> Private
+
+    <hr>
+    <label>Option 1</label>
+    <input type="text" name="option1name" required>
+
+    <label>Option 2</label>
+    <input type="text" name="option2name" required>
+
+    <label>Option 3</label>
+    <input type="text" name="option3name" required>
+
+    <label>Option 4</label>
+    <input type="text" name="option4name" required>
+
+    <button type="submit">Create Poll</button>
+</form>
+{% endblock %}

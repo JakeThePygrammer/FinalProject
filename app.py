@@ -13,7 +13,7 @@ app.secret_key = 'Helloiamjakovandiamstudyinginsemostodayis352026at4am'
 @app.get("/")
 def polls():
     query = session.query(Poll)
-    polls = query.order_by(Poll.created_at.desc()).all()
+    polls = query.order_by(Poll.created_at.desc()).where(Poll.privacy != 1).all()
     return render_template("polls.html", polls=polls)
 
 
@@ -165,6 +165,239 @@ def users_logout():
     flash("You have been logged out.")
     return redirect(url_for("polls"))
 
+@app.route("/polls/new/3", methods=["GET", "POST"])
+def polls_new3():
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+        category = request.form.get("category")
+        privacy = request.form.get("privacy")
+        option1name = request.form.get("option1name")
+        option2name = request.form.get("option2name")
+        option3name = request.form.get("option2name")
+
+        if not name or not description or not category or not privacy:
+            flash("Please fill all the fields.")
+            return redirect(url_for("polls_new"))
+
+        poll1 = Poll(
+            name=name,
+            description=description,
+            category=category,
+            privacy=int(privacy),
+            user_id=current_user_id,
+        )
+        session.add(poll1)
+        session.commit()
+
+        option1 = Option(optionname=option1name, poll_id=poll1.id)
+        option2 = Option(optionname=option2name, poll_id=poll1.id)
+        option3 = Option(optionname=option3name, poll_id=poll1.id)
+        session.add(option1)
+        session.add(option2)
+        session.add(option3)
+        session.commit()
+
+        flash("Poll created!")
+        return redirect(url_for("polls"))
+
+    return render_template("pollcreate3.html")
+
+@app.route("/polls/new/4", methods=["GET", "POST"])
+def polls_new4():
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+        category = request.form.get("category")
+        privacy = request.form.get("privacy")
+        option1name = request.form.get("option1name")
+        option2name = request.form.get("option2name")
+        option3name = request.form.get("option3name")
+        option4name = request.form.get("option4name")
+
+        if not name or not description or not category or not privacy:
+            flash("Please fill all the fields.")
+            return redirect(url_for("polls_new4"))
+
+        poll1 = Poll(
+            name=name,
+            description=description,
+            category=category,
+            privacy=int(privacy),
+            user_id=current_user_id,
+        )
+        session.add(poll1)
+        session.commit()
+
+        option1 = Option(optionname=option1name, poll_id=poll1.id)
+        option2 = Option(optionname=option2name, poll_id=poll1.id)
+        option3 = Option(optionname=option3name, poll_id=poll1.id)
+        option4 = Option(optionname=option4name, poll_id=poll1.id)
+        session.add(option1)
+        session.add(option2)
+        session.add(option3)
+        session.add(option4)
+        session.commit()
+
+        flash("Poll created!")
+        return redirect(url_for("polls"))
+
+    return render_template("pollcreate4.html")
+
+@app.route("/polls/new/5", methods=["GET", "POST"])
+def polls_new5():
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+        category = request.form.get("category")
+        privacy = request.form.get("privacy")
+        option1name = request.form.get("option1name")
+        option2name = request.form.get("option2name")
+        option3name = request.form.get("option3name")
+        option4name = request.form.get("option4name")
+        option5name = request.form.get("option5name")
+
+        if not name or not description or not category or not privacy:
+            flash("Please fill all the fields.")
+            return redirect(url_for("polls_new5"))
+
+        poll1 = Poll(
+            name=name,
+            description=description,
+            category=category,
+            privacy=int(privacy),
+            user_id=current_user_id,
+        )
+        session.add(poll1)
+        session.commit()
+
+        option1 = Option(optionname=option1name, poll_id=poll1.id)
+        option2 = Option(optionname=option2name, poll_id=poll1.id)
+        option3 = Option(optionname=option3name, poll_id=poll1.id)
+        option4 = Option(optionname=option4name, poll_id=poll1.id)
+        option5 = Option(optionname=option5name, poll_id=poll1.id)
+        session.add(option1)
+        session.add(option2)
+        session.add(option3)
+        session.add(option4)
+        session.add(option5)
+        session.commit()
+
+        flash("Poll created!")
+        return redirect(url_for("polls"))
+
+    return render_template("pollcreate5.html")
+
+@app.route("/polls/new/6", methods=["GET", "POST"])
+def polls_new6():
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+        category = request.form.get("category")
+        privacy = request.form.get("privacy")
+        option1name = request.form.get("option1name")
+        option2name = request.form.get("option2name")
+        option3name = request.form.get("option3name")
+        option4name = request.form.get("option4name")
+        option5name = request.form.get("option5name")
+        option6name = request.form.get("option6name")
+
+        if not name or not description or not category or not privacy:
+            flash("Please fill all the fields.")
+            return redirect(url_for("polls_new6"))
+
+        poll1 = Poll(
+            name=name,
+            description=description,
+            category=category,
+            privacy=int(privacy),
+            user_id=current_user_id,
+        )
+        session.add(poll1)
+        session.commit()
+
+        option1 = Option(optionname=option1name, poll_id=poll1.id)
+        option2 = Option(optionname=option2name, poll_id=poll1.id)
+        option3 = Option(optionname=option3name, poll_id=poll1.id)
+        option4 = Option(optionname=option4name, poll_id=poll1.id)
+        option5 = Option(optionname=option5name, poll_id=poll1.id)
+        option6 = Option(optionname=option6name, poll_id=poll1.id)
+        session.add(option1)
+        session.add(option2)
+        session.add(option3)
+        session.add(option4)
+        session.add(option5)
+        session.add(option6)
+        session.commit()
+
+        flash("Poll created!")
+        return redirect(url_for("polls"))
+
+    return render_template("pollcreate6.html")
+
+
+@app.route("/users/settings", methods=["GET", "POST"])
+def users_settings():
+    current_user_id = flask_session.get("user_id")
+    if not current_user_id:
+        flash("Login first!")
+        return redirect(url_for("users_login"))
+
+    user = session.get(User, current_user_id)
+
+    if request.method == "POST":
+        new_username = request.form.get("username")
+        new_email = request.form.get("email")
+        new_password = request.form.get("password")
+        new_description = request.form.get("description")
+
+        if new_username != user.username:
+            existing_user = session.query(User).filter(User.username == new_username).first()
+            if existing_user:
+                flash("Username is already taken!")
+                return redirect(url_for("users_settings"))
+
+        if new_email != user.email:
+            existing_email = session.query(User).filter(User.email == new_email).first()
+            if existing_email:
+                flash("Email is already registered to another account!")
+                return redirect(url_for("users_settings"))
+
+        user.username = new_username
+        user.email = new_email
+        user.description = new_description
+
+        if new_password:
+            user.password = new_password
+
+        session.commit()
+
+        flask_session["username"] = user.username
+
+        flash("Settings updated successfully!")
+        return redirect(url_for("polls"))
+
+    return render_template("usersettings.html", user=user)
 
 if __name__ == "__main__":
     app.run(debug=True)

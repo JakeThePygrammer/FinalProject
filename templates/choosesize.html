@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+<h1>Choose size : </h1>
+    <a href="{{ url_for('polls_new') }}">2 options</a>
+    <a href="{{ url_for('polls_new3') }}">3 options</a>
+    <a href="{{ url_for('polls_new4') }}">4 options</a>
+    <a href="{{ url_for('polls_new5') }}">5 options</a>
+    <a href="{{ url_for('polls_new6') }}">6 options</a>
+{% endblock %}
