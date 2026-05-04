@@ -1,30 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
 <form method="POST">
-    <label>Poll Name</label>
-    <input type="text" name="name" required>
-
-    <label>Description</label>
-    <textarea name="description"></textarea>
-
-    <label>Category</label>
-    <input type="radio" name="category" value="Food"> Food
-    <input type="radio" name="category" value="Travel"> Travel
-
-    <label>Privacy</label>
-    <input type="radio" name="privacy" value="0"> Public
-    <input type="radio" name="privacy" value="1"> Private
-
-    <hr>
-    <label>Option 1</label>
-    <input type="text" name="option1name">
-
-    <label>Option 2</label>
-    <input type="text" name="option2name">
-
-    <label>Option 3</label>
-    <input type="text" name="option3name">
-
-    <button type="submit">Create Poll</button>
+<label>Poll Name</label>
+<input type="text" name="name" required>
+<br>
+    <br>
+<label>Description</label>
+<textarea name="description"></textarea>
+<br>
+    <br>
+<label>Category</label>
+    <br>
+<input type="radio" name="category" value="Entertainment & Media"> Entertainment & Media
+    <br>
+<input type="radio" name="category" value="Lifestyle & Food"> Lifestyle & Food
+    <br>
+<input type="radio" name="category" value="Professional & Tech"> Professional & Tech
+    <br>
+<input type="radio" name="category" value="Social & Opinion"> Social & Opinion
+    <br>
+<input type="radio" name="category" value="Random & Just for Fun"> Random & Just for Fun
+<br>
+    <br>
+<label>Privacy</label>
+    <br>
+<input type="radio" name="privacy" value="0"> Public
+    <br>
+<input type="radio" name="privacy" value="1"> Private
+<br>
+<hr>
+<label>Option 1</label>
+<input type="text" name="option1name">
+<br>
+    <br>
+<label>Option 2</label>
+<input type="text" name="option2name">
+<br>
+    <br>
+<label>Option 3</label>
+<input type="text" name="option3name">
+<br>
+    <br>
+<button type="submit">Create Poll</button>
 </form>
 {% endblock %}
