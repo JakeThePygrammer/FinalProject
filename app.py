@@ -391,21 +391,26 @@ def users_settings():
         new_password = request.form.get("password")
         new_description = request.form.get("description")
 
-        if new_username != user.username:
-            existing_user = session.query(User).filter(User.username == new_username).first()
-            if existing_user:
-                flash("Username is already taken!")
-                return redirect(url_for("users_settings"))
+        if new_username:
+            if new_username != user.username:
+                existing_user = session.query(User).filter(User.username == new_username).first()
+                if existing_user:
+                    flash("Username is already taken!")
+                    return redirect(url_for("users_settings"))
+                else:
+                    user.username = new_username
 
-        if new_email != user.email:
-            existing_email = session.query(User).filter(User.email == new_email).first()
-            if existing_email:
-                flash("Email is already registered to another account!")
-                return redirect(url_for("users_settings"))
+        if new_email:
+            if new_email != user.email:
+                existing_email = session.query(User).filter(User.email == new_email).first()
+                if existing_email:
+                    flash("Email is already registered to another account!")
+                    return redirect(url_for("users_settings"))
+                else:
+                    user.email = new_email
 
-        user.username = new_username
-        user.email = new_email
-        user.description = new_description
+        if new_description:
+            user.description = new_description
 
         if new_password:
             user.password = new_password
@@ -439,7 +444,7 @@ def pollai(id):
         return redirect(url_for("users_login"))
 
     prompt = (
-        "Give me a detailed statistical analysis in 2 paragraphs on the data of this poll. Use only plain text, with no text effects(bold, italic, etc...). Give reasons as to why these polls might be giving these outcomes, and a future prediction in a third paragraph."
+        "Give me a direct, light statistical analysis in 1 medium-short paragraph on the data of this poll. Make it user oriented, for a polling website. Ensure all facts are true to the data. Use only plain text, with no text effects(bold, italic, etc...). Give reasons as to why these polls might be giving these outcomes, and a future prediction in 2 sentences. Make it interesting, but still professional."
         f"Poll question: {poll_data.name}\n"  
         f"Category: {poll_data.category}\n"
         f"Options: {[(opt.optionname, opt.votes_total) for opt in poll_data.options]}\n"
@@ -471,4 +476,3 @@ def pollssearchexact():
 if __name__ == "__main__":
     app.run(debug=True)
 
-#TO FINISH - login, signup and the polls 3-6
