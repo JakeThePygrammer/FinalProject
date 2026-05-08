@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session as flask_session
-from sqlalchemy import or_
 
-from database import SessionLocal
 from database import session
 from models import Poll, Option, Vote, User
 from services.ai_service import generate_text
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
-app.secret_key = 'Helloiamjakovandiamstudyinginsemostodayis352026at4am'
+load_dotenv()
+app.secret_key = os.getenv("FLASK_SECRET", "").strip()
 
 
 @app.get("/")
