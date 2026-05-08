@@ -477,3 +477,4 @@ def pollssearchexact():
 if __name__ == "__main__":
     app.run(debug=True)
 
+#put in footer, about us i pptx, center na elementi vo login/signup ili na strana
