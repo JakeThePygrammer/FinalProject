@@ -1,95 +1,91 @@
 body{
-    background-color: black;
+    background-color: #03314a;
     color: white;
     font :20px bold Roboto, sans-serif;
 }
 
 a{
     color: white;
-    text-decoration: none;
-    font-weight: bold;
-    background: #00005AFF;
-    border: #00005AFF solid 10px;
-    border-radius: 15px;
+    font :20px bold Roboto, sans-serif;
 }
+
 button{
-       color: white;
+    color: black;
     text-decoration: none;
     font-weight: bold;
-    background: #00005AFF;
-    border: #00005AFF solid 10px;
+    background: #ffffff;
+    border: #ffffff solid 10px;
     border-radius: 15px;
+    transition: background-color 0.3s ease, border 0.3s ease, transform 0.2s ease-out;
 }
-nav > a{
+button:hover{
+    transform: scale(1.1);
+}
+article button:hover{
+    border: #9af9ff solid 10px;
+    background-color: #9af9ff;
+    transform: scale(1.1);
+}
+
+article button{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background: #6FD1D7;
+    border: #6FD1D7 solid 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, border 0.3s ease, transform 0.2s ease-out;
+}
+
+nav > a, .pollcreate, .signedout>a{
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    font :50px bold Roboto, sans-serif;
-    color:black;
-    background: rgba(255, 255, 255, 0.9);
-    border: rgba(255, 255, 255, 0.1) solid 10px;
+    font :35px bold Roboto, sans-serif;
+    color:#FFFFFF;
+    -webkit-text-stroke: #FFFFFF 2px;
+    background: #3B7597;
+    border: #3B7597 solid 10px;
     border-radius: 15px;
     text-decoration: none;
     box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.1);
     margin: 20px;
+    transition: background-color 0.3s ease, border 0.3s ease, transform 0.2s ease-out;
 }
-nav{
+
+
+
+nav > a:hover, .pollcreate:hover, .signedout>a:hover{
+    border: #ffffaf solid 10px;
+    background-color: #ffffaf;
+    transform: scale(1.1);
+}
+nav, .signedout{
     display: flex;
     justify-content: center;
     align-items: center;
     height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
 }
 
 article{
-    background: #000022;
+    background: #3B7597;
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
 }
 
-article button {
-    background-color: #00005a;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-out;
-}
 
-article button:hover {
-    background-color: #0a0a9c;
-    transform: scale(1.1);
-}
 
 input, textarea{
     border-radius: 20px;
-    background: #000000;
+    background: #065381;
     border: white solid 5px;
     font : 20px Roboto, sans-serif;
     color: white;
 }
 
-.pollcreate{
-        display: inline-block;
-    text-align: center;
-
-    font :40px bold Roboto, sans-serif;
-    text-decoration: none;
-    background-color: #00005a;
-    color: white;
-    border: white solid 3px;
-    padding: 10px 20px;
-    margin: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-out;
-}
-
-.pollcreate:hover{
-    background-color: #0a0a9c;
-    transform: scale(1.1);
-}
 
 #holder{
     display: flex;
@@ -111,4 +107,24 @@ input, textarea{
     align-items: center;
     flex-direction: column;
     font-size: 30px;
+    border: rgba(255, 255, 255, 0.2) solid 1px;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+hr{
+    width: 90%;
+    border-radius: 10px;
+    border: rgba(255, 255, 255, 0.2) solid 1px;
+}
+
+input[type=radio]{
+    width: 20px;
+    height: 20px;
+}
+
+input[type=radio]:hover{
+    transform: scale(1.1);
 }

@@ -6,7 +6,7 @@
             <h3>{{ poll.name }} - {{ poll.created_at.strftime('%Y-%m-%d %H:%M')}}</h3>
             <p>{{ poll.description }}</p>
             <a href="{{ url_for('poll', id=poll.id) }}">
-                <button type="button">Vote Now</button>
+                <button>Vote Now</button>
             </a>
         </article>
     {% endfor %}

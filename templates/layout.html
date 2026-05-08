@@ -9,10 +9,12 @@
 <body>
 
     {% if session.get('user_id') %}
-        <h2>Welcome, {{ session['username'] }}</h2>
+        <a href="{{ url_for('userview', user_id=session['user_id']) }}">
+            <h2>Welcome, {{ session['username'] }}</h2>
+        </a>
         <br>
-                <hr>
-        <nav class="nav">
+
+        <nav>
         <a href="{{ url_for('polls') }}">Home</a>
         <a href="{{ url_for('pollssearchcat') }}">Category search</a>
         <a href="{{ url_for('pollssearchexact') }}">Exact search</a>
@@ -21,11 +23,13 @@
         <a href="{{ url_for('users_logout') }}">Logout</a>
         <br>
         </nav>
-                <hr>
+
 
     {% else %}
+        <div class="signedout">
         <a href="{{ url_for('users_login') }}">Login</a>
         <a href="{{ url_for('users_new') }}">Sign Up</a>
+        </div>
     {% endif %}
 
 <main class="container">
