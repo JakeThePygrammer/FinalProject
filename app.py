@@ -68,6 +68,7 @@ def polls_new():
         description = request.form.get("description")
         category = request.form.get("category")
         privacy = request.form.get("privacy")
+        image = request.form.get("image")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
 
@@ -80,6 +81,7 @@ def polls_new():
             description=description,
             category=category,
             privacy=int(privacy),
+            image=image,
             user_id=current_user_id,
         )
         session.add(poll1)
@@ -182,6 +184,7 @@ def polls_new3():
         description = request.form.get("description")
         category = request.form.get("category")
         privacy = request.form.get("privacy")
+        image = request.form.get("image")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
         option3name = request.form.get("option3name")
@@ -195,6 +198,7 @@ def polls_new3():
             description=description,
             category=category,
             privacy=int(privacy),
+            image=image,
             user_id=current_user_id,
         )
         session.add(poll1)
@@ -229,6 +233,7 @@ def polls_new4():
         description = request.form.get("description")
         category = request.form.get("category")
         privacy = request.form.get("privacy")
+        image = request.form.get("image")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
         option3name = request.form.get("option3name")
@@ -243,6 +248,7 @@ def polls_new4():
             description=description,
             category=category,
             privacy=int(privacy),
+            image=image,
             user_id=current_user_id,
         )
         session.add(poll1)
@@ -279,6 +285,7 @@ def polls_new5():
         description = request.form.get("description")
         category = request.form.get("category")
         privacy = request.form.get("privacy")
+        image = request.form.get("image")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
         option3name = request.form.get("option3name")
@@ -294,6 +301,7 @@ def polls_new5():
             description=description,
             category=category,
             privacy=int(privacy),
+            image=image,
             user_id=current_user_id,
         )
         session.add(poll1)
@@ -332,6 +340,7 @@ def polls_new6():
         description = request.form.get("description")
         category = request.form.get("category")
         privacy = request.form.get("privacy")
+        image = request.form.get("image")
         option1name = request.form.get("option1name")
         option2name = request.form.get("option2name")
         option3name = request.form.get("option3name")
@@ -348,6 +357,7 @@ def polls_new6():
             description=description,
             category=category,
             privacy=int(privacy),
+            image=image,
             user_id=current_user_id,
         )
         session.add(poll1)
@@ -477,4 +487,4 @@ def pollssearchexact():
 if __name__ == "__main__":
     app.run(debug=True)
 
-#put in footer, about us i pptx, center na elementi vo login/signup ili na strana
+

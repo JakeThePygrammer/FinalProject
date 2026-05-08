@@ -21,6 +21,7 @@ class Poll(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     description = Column(String)
     category = Column(String)
+    image = Column(String, nullable=True)
     privacy = Column(Integer, default=0)
     user_id = Column(Integer, ForeignKey("user.id"))
     creator = relationship("User", back_populates="polls")

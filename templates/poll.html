@@ -4,7 +4,9 @@
 <p>{{ poll.description }}</p>
 <p>Created by: <a href="{{ url_for('userview', user_id=poll.user_id) }}">{{ poll.creator.username }}</a></p>
 <p>{{ poll.created_at.strftime('%Y-%m-%d %H:%M')}}</p>
-
+{% if poll.image %}
+    <img src="{{ poll.image }}" alt="{{ poll.name }}">
+{% endif %}
 <h3>Choices:</h3>
     <form method="post">
         {% for opt in poll.options %}
@@ -18,7 +20,8 @@
     </form>
     <br>
     <br>
-    <a href="{{ url_for('pollai', id=poll.id) }}">
-        Analyze with AI
+    <a id="id1" href="{{ url_for('pollai', id=poll.id) }}">
+        ✨Analyze with AI✨
     </a>
+    {% include 'footer.html' %}
 {% endblock %}

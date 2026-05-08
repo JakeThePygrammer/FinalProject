@@ -36,8 +36,12 @@ article button{
     border-radius: 15px;
     transition: background-color 0.3s ease, border 0.3s ease, transform 0.2s ease-out;
 }
-
-nav > a, .pollcreate, .signedout>a{
+.none1{
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+nav > a, .pollcreate, .signedout>a, #id1{
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -55,7 +59,7 @@ nav > a, .pollcreate, .signedout>a{
 
 
 
-nav > a:hover, .pollcreate:hover, .signedout>a:hover{
+nav > a:hover, .pollcreate:hover, .signedout>a:hover, #id1:hover{
     border: #ffffaf solid 10px;
     background-color: #ffffaf;
     transform: scale(1.1);
