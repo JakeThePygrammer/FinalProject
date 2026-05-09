@@ -1,11 +1,7 @@
-# Flask and Web dependencies
 Flask==3.0.3
 
-# Database and ORM
 SQLAlchemy==2.0.30
 
-# HTTP and API requests
 requests==2.32.3
 
-# Environment management
 python-dotenv==1.0.1
